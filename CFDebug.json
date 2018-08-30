@@ -55,9 +55,16 @@
 				"KeyName" : {
 					"Ref" : "KeyName"
 				},
-				"ImageId" : "ami-c9e649d3"
+				"ImageId" : {
+				    "Fn::FindInMap" : [
+				        "AmazonLinuxAMI", {
+				            "Ref" : "AWS::Region"
+				        },
+				        "AMI"
+				    ]
+				}			
 			}
-		}
+		},
 
 		"InstanceSecurityGroup" : {
 			"Type" : "AWS::EC2::SecurityGroup",
